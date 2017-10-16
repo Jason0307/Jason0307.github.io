@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>时光机</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-10-16T17:37:00.300Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Monkey Zhu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>何处是停歇</title>
+    <link href="http://yoursite.com/2017/10/16/Monkey-Zhu/"/>
+    <id>http://yoursite.com/2017/10/16/Monkey-Zhu/</id>
+    <published>2017-10-15T17:27:00.000Z</published>
+    <updated>2017-10-16T17:37:00.300Z</updated>
+    
+    <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=4874834&auto=1&height=66"></iframe><p>每次听到那句“想得太多， 又做的太少”， 心中都会有别样的感动。 身边的人总会在大浪里渐渐流失， 越走越少。 但内心却一定是越来越丰盈的。 无论你选择远走他乡， 还是选择安逸平和， 奔放如河， 货涓涓如溪。 活的都是一个【心气】。 心气高了， 人会傲， 容易摔跟头。 心气低了， 人会卑， 容易脆弱。 只有心气平了， 淡了， 一切才会如流水顺畅。 不以物喜， 不以己悲， 大抵如此了吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
