@@ -36,6 +36,105 @@
     
     
     
+        
+
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("YmXiCRwzlvBedUXqzBeHxiAG-gzGzoHsz", "4jGIhMHxJ3f6kitqqzYKeRfO");</script>
+<script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script> 
+    
+    
     
 
 
@@ -225,7 +324,7 @@
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/10/16/Monkey-Zhu/">
-            <time datetime="2017-10-15T17:27:00.000Z" itemprop="datePublished">2017-10-16</time>
+            <time datetime="2017-10-15T17:27:00.000Z" itemprop="datePublished">2017-10-16 01:10:00</time>
         </a>
     </div>
 
@@ -242,17 +341,36 @@
         <a class="tag-link" href="/tags/生活感悟/">生活感悟</a>
     </div>
 
-                        阅读数:
-    <span id="/2017/10/16/Monkey-Zhu/" class="leancloud_visitors" data-flag-title="何处是停歇"></span>次
+                        
     <span id="/2017/10/16/Monkey-Zhu/" class="leancloud_visitors" data-flag-title="何处是停歇">
      &nbsp; | &nbsp;
      <span class="post-meta-item-icon">
        <i class="fa fa-eye"></i>
      </span>
-     <span class="post-meta-item-text"> </span>
+     <span class="post-meta-item-text">阅读次数 </span>
      <span class="leancloud-visitors-count"></span>
     </span>
 
+                        <span class="post-time">
+&nbsp; | &nbsp;
+     <span class="post-meta-item-icon">
+       <i class="fa fa-calendar-o"></i>
+     </span>
+     <span class="post-meta-item-text">字数统计:</span>
+     <span class="post-count">144(字)</span>
+     
+   </span>
+
+<!-- <span class="post-time">
+&nbsp; | &nbsp;
+     <span class="post-meta-item-icon">
+       <i class="fa fa-calendar-o"></i>
+     </span>
+     <span class="post-meta-item-text">阅读时长:</span>
+     <span class="post-count">1(分)</span>
+     
+   </span>
+-->
                     </div>
                 
             </header>
@@ -274,7 +392,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/10/16/Monkey-Zhu/" data-id="cj8vmp0sz0001wcuh3a835fmh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/10/16/Monkey-Zhu/" data-id="cj8vo7hdl0001c0uh7xyouiom" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -375,7 +493,7 @@
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/摘抄/">摘抄</a></p>
                             <p class="item-title"><a href="/2017/10/16/Monkey-Zhu/" class="title">何处是停歇</a></p>
-                            <p class="item-date"><time datetime="2017-10-15T17:27:00.000Z" itemprop="datePublished">2017-10-16</time></p>
+                            <p class="item-date"><time datetime="2017-10-15T17:27:00.000Z" itemprop="datePublished">2017-10-16 01:10:00</time></p>
                         </div>
                     </li>
                 
@@ -451,6 +569,7 @@ Analyse with <script type="text/javascript">var cnzz_protocol = (("https:" == do
         </div>
     </div>
 </footer>
+
 
         
 
