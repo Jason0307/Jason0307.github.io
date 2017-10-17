@@ -455,8 +455,20 @@ Analyse with <script type="text/javascript">var cnzz_protocol = (("https:" == do
 
         
     
-    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=[object Object]"></script>
-
+	<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+	<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+	<script>
+		var gitment = new Gitment({
+			owner: 'Jason0307',
+			repo: 'Jason0307.github.io',
+			oauth: {
+				client_id: 'bed484de39f9d14d43e6',
+				client_secret: '08882a28de09f9a53519d9c7235546f63763df34',
+			},
+		})
+		gitment.render('commentContainer')
+	</script>
+	
 
 
 
